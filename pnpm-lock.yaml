@@ -15,11 +15,11 @@ importers:
   app1:
     dependencies:
       react:
-        specifier: ^16.13.0
-        version: 16.14.0
+        specifier: 16.13.0
+        version: 16.13.0
       react-dom:
-        specifier: ^16.13.0
-        version: 16.14.0(react@16.14.0)
+        specifier: 16.13.0
+        version: 16.13.0(react@16.13.0)
     devDependencies:
       '@babel/core':
         specifier: 7.24.3
@@ -27,9 +27,6 @@ importers:
       '@babel/preset-react':
         specifier: 7.23.3
         version: 7.23.3(@babel/core@7.24.3)
-      '@module-federation/enhanced':
-        specifier: 0.1.15
-        version: 0.1.15(typescript@5.4.5)(vue-tsc@1.8.27(typescript@5.4.5))(webpack@5.91.0(webpack-cli@5.1.4))
       '@module-federation/runtime':
         specifier: 0.1.15
         version: 0.1.15
@@ -67,11 +64,11 @@ importers:
         specifier: ^2.29.4
         version: 2.30.1
       react:
-        specifier: ^16.13.0
-        version: 16.14.0
+        specifier: 16.13.0
+        version: 16.13.0
       react-dom:
-        specifier: ^16.13.0
-        version: 16.14.0(react@16.14.0)
+        specifier: 16.13.0
+        version: 16.13.0(react@16.13.0)
     devDependencies:
       '@babel/core':
         specifier: 7.24.3
@@ -116,14 +113,14 @@ importers:
         specifier: ^2.29.4
         version: 2.30.1
       react:
-        specifier: ^16.13.0
-        version: 16.14.0
+        specifier: 16.13.0
+        version: 16.13.0
       react-dom:
-        specifier: ^16.13.0
-        version: 16.14.0(react@16.14.0)
+        specifier: 16.13.0
+        version: 16.13.0(react@16.13.0)
       react-redux:
         specifier: ^7.2.0
-        version: 7.2.9(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
+        version: 7.2.9(react-dom@16.13.0(react@16.13.0))(react@16.13.0)
       redux:
         specifier: ^4.2.1
         version: 4.2.1
@@ -1950,10 +1947,10 @@ packages:
     resolution: {integrity: sha512-y3bGgqKj3QBdxLbLkomlohkvsA8gdAiUQlSBJnBhfn+BPxg4bc62d8TcBW15wavDfgexCgccckhcZvywyQYPOw==}
     hasBin: true
 
-  react-dom@16.14.0:
-    resolution: {integrity: sha512-1gCeQXDLoIqMgqD3IO2Ah9bnf0w9kzhwN5q4FGnHZ67hBm9yePzB5JJAIQCc8x3pFnNlwFq4RidZggNAAkzWWw==}
+  react-dom@16.13.0:
+    resolution: {integrity: sha512-y09d2c4cG220DzdlFkPTnVvGTszVvNpC73v+AaLGLHbkpy3SSgvYq8x0rNwPJ/Rk/CicTNgk0hbHNw1gMEZAXg==}
     peerDependencies:
-      react: ^16.14.0
+      react: ^16.0.0
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -1973,8 +1970,8 @@ packages:
       react-native:
         optional: true
 
-  react@16.14.0:
-    resolution: {integrity: sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g==}
+  react@16.13.0:
+    resolution: {integrity: sha512-TSavZz2iSLkq5/oiE7gnFzmURKZMltmi193rm5HEoUDAXpzT9Kzw6oNZnGoai/4+fUnm7FqS5dwgUL34TujcWQ==}
     engines: {node: '>=0.10.0'}
 
   readable-stream@2.3.8:
@@ -4503,31 +4500,31 @@ snapshots:
       minimist: 1.2.8
       strip-json-comments: 2.0.1
 
-  react-dom@16.14.0(react@16.14.0):
+  react-dom@16.13.0(react@16.13.0):
     dependencies:
       loose-envify: 1.4.0
       object-assign: 4.1.1
       prop-types: 15.8.1
-      react: 16.14.0
+      react: 16.13.0
       scheduler: 0.19.1
 
   react-is@16.13.1: {}
 
   react-is@17.0.2: {}
 
-  react-redux@7.2.9(react-dom@16.14.0(react@16.14.0))(react@16.14.0):
+  react-redux@7.2.9(react-dom@16.13.0(react@16.13.0))(react@16.13.0):
     dependencies:
       '@babel/runtime': 7.24.6
       '@types/react-redux': 7.1.33
       hoist-non-react-statics: 3.3.2
       loose-envify: 1.4.0
       prop-types: 15.8.1
-      react: 16.14.0
+      react: 16.13.0
       react-is: 17.0.2
     optionalDependencies:
-      react-dom: 16.14.0(react@16.14.0)
+      react-dom: 16.13.0(react@16.13.0)
 
-  react@16.14.0:
+  react@16.13.0:
     dependencies:
       loose-envify: 1.4.0
       object-assign: 4.1.1
