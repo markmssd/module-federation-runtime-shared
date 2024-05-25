@@ -15,24 +15,25 @@ init({
       entry: 'http://localhost:3003/remoteEntry.js'
     },
   ],
-  shared: {
-    react: {
-      lib: () => React,
-      version: React.version,
-      shareConfig: {
-        singleton: true,
-        requiredVersion: '16.13.0',
-      },
-    },
-    'react-dom': {
-      lib: () => ReactDOM,
-      version: ReactDOM.version,
-      shareConfig: {
-        singleton: true,
-        requiredVersion: '16.13.0',
-      },
-    },
-  },
+  // Uncommenting this then works
+  // shared: {
+  //   react: {
+  //     lib: () => React,
+  //     version: React.version,
+  //     shareConfig: {
+  //       singleton: true,
+  //       requiredVersion: '16.13.0',
+  //     },
+  //   },
+  //   'react-dom': {
+  //     lib: () => ReactDOM,
+  //     version: ReactDOM.version,
+  //     shareConfig: {
+  //       singleton: true,
+  //       requiredVersion: '16.13.0',
+  //     },
+  //   },
+  // },
 })
 
 function useDynamicImport({module,scope}) {
