@@ -1,22 +1,26 @@
-This is a demo app based on https://github.com/module-federation/module-federation-examples/tree/master/advanced-api/dynamic-remotes, to reproduce the issue https://github.com/module-federation/core/issues/2541.
+# Dynamic Remote Vendor Sharing Example
 
-I wanted to try loading the apps when:
-- Remotes use Module Federation v1 (from Webpack)
-- Host also uses Module Federation v1 (from Webpack) at build time to defined `shared` (but not `remotes`)
-- Host loads Remotes at runtime (using `@module-federation/runtime` package)
+This example demos a basic host application loading remote component and sharing vendor code dynamically between unknown remotes
 
-I have created the minimum required to reproduce it at https://github.com/markmssd/module-federation-runtime-shared. You can try it with `pnpm start:legacy`. The only difference between this reproducible and the official example is that in the Webpack configs, I am using the Webpack MF plugin from `require('webpack').container.ModuleFederationPlugin`, and uninstalled `@module-federation/enhanced` completely.
+- `app1` is the host application.
+- `app2` standalone application which exposes `Widget` component.
+- `app3` standalone application which exposes `Widget` component that requires
+  `momentjs`.
 
-It seems like it doesn't load the shared dependencies properly. First, when we start the app, and log `__FEDERATION__` in the developer console, it shows no shared dependencies.
+# Running Demo
 
-<img width="846" alt="Screenshot 2024-05-25 at 6 23 54 PM" src="https://github.com/module-federation/core/assets/5899024/0eccfa90-b1a3-4f23-ba22-2b3f2a2c4912">
+Run `pnpm start`. This will build and serve both `app1`, `app2`, and `app3` on
+ports `3001`, `3002`, and `3003` respectively.
 
-Then, if we load App3, it crashes with
+- [localhost:3001](http://localhost:3001/) (HOST)
+- [localhost:3002](http://localhost:3002/) (STANDALONE REMOTE)
+- [localhost:3003](http://localhost:3003/) (STANDALONE REMOTE)
+  <img src="https://ssl.google-analytics.com/collect?v=1&t=event&ec=email&ea=open&t=event&tid=UA-120967034-1&z=1589682154&cid=ae045149-9d17-0367-bbb0-11c41d92b411&dt=ModuleFederationExamples&dp=/email/advanced-api/dynamic-remotes">
 
-<img width="1001" alt="Screenshot 2024-05-25 at 5 54 17 PM" src="https://github.com/module-federation/core/assets/5899024/51b46a7c-acf7-454a-8ae8-22dfd9925010">
+# Running Cypress E2E Tests
 
-which is usually an error when multiple instances of React are used.
+To run tests in interactive mode, run `npm run cypress:debug` from the root directory of the project. It will open Cypress Test Runner and allow to run tests in interactive mode. [More info about "How to run tests"](../../cypress/README.md#how-to-run-tests)
 
-Note what loading App2 works just fine, not sure why. The only difference with it is that it also shares `moment`, so not sure, I would have expected it to crash too 🤔
+To build app and run test in headless mode, run `pnpm e2e:ci`. It will build app and run tests for this workspace in headless mode. If tets failed cypress will create `cypress` directory in sample root folder with screenshots and videos.
 
-I've also noticed that if I define the shared dependencies on runtime too in App1 (and I can then remove MF plugin completely from its Webpack), then it works properly. I guess this is expected, obviously.
+["Best Practices, Rules amd more interesting information here](../../cypress/README.md)

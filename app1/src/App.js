@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState, useEffect, Suspense } from 'react';
 
 import { init,loadRemote } from '@module-federation/runtime'
 
@@ -14,27 +13,9 @@ init({
       name:'app3',
       entry: 'http://localhost:3003/remoteEntry.js'
     },
-  ],
-  // Uncommenting this then works
-  // shared: {
-  //   react: {
-  //     lib: () => React,
-  //     version: React.version,
-  //     shareConfig: {
-  //       singleton: true,
-  //       requiredVersion: '16.13.0',
-  //     },
-  //   },
-  //   'react-dom': {
-  //     lib: () => ReactDOM,
-  //     version: ReactDOM.version,
-  //     shareConfig: {
-  //       singleton: true,
-  //       requiredVersion: '16.13.0',
-  //     },
-  //   },
-  // },
+  ]
 })
+
 
 function useDynamicImport({module,scope}) {
   console.log(module,scope)
