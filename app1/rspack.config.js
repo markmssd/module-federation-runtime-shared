@@ -1,18 +1,43 @@
-const { HtmlRspackPlugin, container: {ModuleFederationPlugin} } = require('@rspack/core');
+const rspack = require('@rspack/core');
+const ReactRefreshPlugin = require('@rspack/plugin-react-refresh');
+const { ModuleFederationPlugin } = require('@module-federation/enhanced/rspack');
 const path = require('path');
 
+const OUTPUT_PATH = path.resolve(process.cwd(), './dist');
+
 module.exports = {
-  entry: './src/index',
+  entry: {
+    app: [
+      './src/index.js',
+    ],
+  },
   mode: 'development',
+  devtool: 'eval-cheap-module-source-map',
   target: 'web',
   devServer: {
     static: {
       directory: path.join(__dirname, 'dist'),
     },
     port: 3001,
+    client: {
+      overlay: {
+        errors: true,
+        warnings: false,
+      },
+    },
   },
   output: {
-    publicPath: 'auto',
+    path: OUTPUT_PATH,
+    publicPath: '/',
+    pathinfo: false,
+    uniqueName: 'app1',
+  },
+  optimization: {
+    moduleIds: 'named',
+    runtimeChunk: 'single',
+    removeAvailableModules: false,
+    removeEmptyChunks: false,
+    splitChunks: false,
   },
   module: {
     rules: [
@@ -38,9 +63,16 @@ module.exports = {
       },
     ],
   },
+  stats: {
+    assets: false,
+    colors: true,
+  },
   plugins: [
     new ModuleFederationPlugin({
       name: 'app1',
+      manifest: false,
+      dts: false,
+      dev: false,
       // adds react as shared module
       // version is inferred from package.json
       // there is no version check for the required version
@@ -51,20 +83,22 @@ module.exports = {
           shareKey: 'react', // under this name the shared module will be placed in the share scope
           shareScope: 'default', // share scope with this name will be used
           singleton: true, // only a single version of the shared module is allowed
+          requiredVersion: '18.3.1',
         },
-        'react-dom': {
+        // trailing slash is important when importing from react-dom/client
+        // with React 18 to avoid warnings in production mode. In dev, it works with or without it
+        'react-dom/': {
           singleton: true, // only a single version of the shared module is allowed
+          requiredVersion: '18.3.1',
         },
       },
     }),
-    new HtmlRspackPlugin({
+    new rspack.HtmlRspackPlugin({
       template: './public/index.html',
+      inject: 'body',
     }),
-  ],
-  // it will be fixed soon...
-  resolve:{
-    alias:{
-      '@module-federation/runtime$': require.resolve('@module-federation/runtime'),
-    }
-  }
+    new ReactRefreshPlugin({
+      overlay: true,
+    }),
+  ]
 };

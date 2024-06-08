@@ -1,37 +1,22 @@
-import React, { useState, useEffect, Suspense } from 'react';
+import React from 'react';
+import ReactDOMServer from 'react-dom/server';
 
-import { init,loadRemote } from '@module-federation/runtime'
+import { init } from '@module-federation/enhanced/runtime'
+import RemoteModule from './RemoteModule'
 
 init({
   name: 'app1',
   remotes: [
     {
-      name:'app2',
+      name: 'app2',
       entry: 'http://localhost:3002/remoteEntry.js'
     },
     {
-      name:'app3',
+      name: 'app3',
       entry: 'http://localhost:3003/remoteEntry.js'
     },
-  ]
+  ],
 })
-
-
-function useDynamicImport({module,scope}) {
-  console.log(module,scope)
-  const [component, setComponent] = useState(null);
-
-  useEffect(() => {
-    if(!module && !scope) return
-    const loadComponent = async () => {
-      const { default: component } = await loadRemote(`${scope}/${module}`);
-      setComponent(() => component);
-    };
-    loadComponent();
-  }, [module,scope]);
-  const fallback = ()=> null
-  return component || fallback
-}
 
 function App() {
   const [{ module, scope }, setSystem] = React.useState({});
@@ -50,8 +35,6 @@ function App() {
     });
   }
 
-  const Component = useDynamicImport({module,scope});
-
   return (
     <div
       style={{
@@ -67,10 +50,9 @@ function App() {
       </p>
       <button onClick={setApp2}>Load App 2 Widget</button>
       <button onClick={setApp3}>Load App 3 Widget</button>
+
       <div style={{ marginTop: '2em' }}>
-        <React.Suspense fallback="Loading System">
-         <Component />
-        </React.Suspense>
+        <RemoteModule module={module} scope={scope}/>
       </div>
     </div>
   );
