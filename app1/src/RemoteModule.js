@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 
 import { loadRemote } from '@module-federation/runtime'
 
-const Page = () => import('./Page')
+const DynamicPage = () => import('./DynamicPage')
 
 function useDynamicImport({ module, scope }) {
   console.log(module, scope)
@@ -28,7 +28,7 @@ function RemoteModule({ module, scope }) {
 
   useEffect(() => {
     const loadPage = async () => {
-      const page = await Page();
+      const page = await DynamicPage();
       page.default.mount(pageRef.current);
     }
     loadPage();

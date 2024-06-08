@@ -1,7 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 
-function Page() {
+function DynamicPage() {
   return (
     <>
       <h1>A Dynamically Loaded Page</h1>
@@ -13,7 +13,7 @@ function Page() {
 export default {
   mount: (mountNode) => {
     const root = createRoot(mountNode);
-    root.render(<Page/>)
+    root.render(<DynamicPage/>)
   },
   unmount: (root) => root.unmount(),
 };

@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOMServer from 'react-dom/server';
 
 import { init } from '@module-federation/enhanced/runtime'
 import RemoteModule from './RemoteModule'
