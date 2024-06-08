@@ -68,6 +68,7 @@ module.exports = {
     colors: true,
   },
   plugins: [
+    // if you comment out this plugin, the error will NOT happen
     new ModuleFederationPlugin({
       name: 'app1',
       manifest: false,
